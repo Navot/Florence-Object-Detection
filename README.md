@@ -4,9 +4,9 @@ Image Captioning Flask App - This Flask application provides a web interface and
 The application is desined to run on Mac M1 but can run on any machine GPU.
 
 ## Features:
-Upload images or provide image URLs to generate captions.
-Detect objects in images and draw bounding boxes around them.
-API endpoints for generating captions from image URLs or uploaded image files.
+* Upload images or provide image URLs to generate captions.
+* Detect objects in images and draw bounding boxes around them.
+* API endpoints for generating captions from image URLs or uploaded image files.
 
 ## Setup and Installation
 Prerequisites:
