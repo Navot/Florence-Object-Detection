@@ -1,5 +1,7 @@
 # Florence-Object-Detection
 Image Captioning Flask App - This Flask application provides a web interface and API endpoints for generating image captions and detecting objects in images using a pre-trained model - Florence-2-large from HaggingFaces.
+### Note
+The application is desined to run on Mac M1 but can run on any machine GPU.
 
 ## Features:
 Upload images or provide image URLs to generate captions.
