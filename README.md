@@ -27,7 +27,9 @@ The application will be available at http://127.0.0.1:5000
 ## API Endpoints
 ### Generate Caption from URL
 Endpoint: /api/generate-caption-url
+
 Method: POST
+
 Payload:
 
 {"image_url": "URL of the image", "prompt": "Text prompt for caption generation"}
@@ -38,6 +40,7 @@ Response:
 
 ### Generate Caption from Uploaded File
 Endpoint: /api/generate-caption-file
+
 Method: POST
 
 Payload:
@@ -60,9 +63,10 @@ Enter a text prompt and click "Generate Caption" to get the generated caption an
 Logging is configured to capture detailed information about the application's operations. Check the console output for logs.
 
 ## Troubleshooting
-Ensure all dependencies are installed correctly.
-Verify that the image URLs provided are accessible and correct.
-Check the application logs for detailed error messages.
+* Ensure all dependencies are installed correctly.
+* Verify that the image URLs provided are accessible and correct.
+* Check the application logs for detailed error messages.
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
