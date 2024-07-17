@@ -10,9 +10,8 @@ API endpoints for generating captions from image URLs or uploaded image files.
 Prerequisites:
 Python 3.7+
 Pip (Python package installer)
-Install Dependencies
-bash
-Copy code
+
+## Install Dependencies
 pip install -r requirements.txt
 
 ## Run the Application
