@@ -1,6 +1,9 @@
-Flask==2.1.1
+Flask==3.0.3
 requests==2.27.1
 Pillow==9.1.0
-transformers==4.29.0
-torch==1.11.0
+transformers==4.42.4
+torch==2.3.1
 matplotlib==3.5.1
+einops==0.8.0
+timm==1.0.7
+torchvision==0.18.1
