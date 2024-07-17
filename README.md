@@ -23,27 +23,45 @@ The application will be available at http://127.0.0.1:5000
 Endpoint: /api/generate-caption-url
 Method: POST
 Payload:
+
 {
+  
   "image_url": "URL of the image",
+  
   "prompt": "Text prompt for caption generation"
+
 }
+
 Response:
+
 {
+
   "parsed_answer": "Generated caption"
+
 }
 
 ### Generate Caption from Uploaded File
 Endpoint: /api/generate-caption-file
 Method: POST
+
 Payload:
+
 {
+
   "image_path": "Path to the image file",
+  
   "prompt": "Text prompt for caption generation"
+
 }
+
 Response:
+
 {
+
   "parsed_answer": "Generated caption"
+
 }
+
 
 ## Web Interface
 Access the web interface at http://127.0.0.1:5000/.
