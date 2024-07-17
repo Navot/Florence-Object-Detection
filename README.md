@@ -10,14 +10,15 @@ The application is desined to run on Mac M1 but can run on any machine GPU.
 
 ## Setup and Installation
 Prerequisites:
-Python 3.7+
-Pip (Python package installer)
+- Python 3.7+
+- Pip (Python package installer)
 
 ## Install Dependencies
 pip install -r requirements.txt
 
 ## Run the Application
 python Florence-2-large-Object-Detection.py
+
 The application will be available at http://127.0.0.1:5000
 
 ## API Endpoints
