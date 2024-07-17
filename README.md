@@ -46,7 +46,7 @@ Response:
 }
 
 ## Web Interface
-Access the web interface at http://127.0.0.1:5000/.
+Access the web interface at http://127.0.0.1:5000/
 Upload an image or provide an image URL.
 Enter a text prompt and click "Generate Caption" to get the generated caption and see the image with bounding boxes for detected objects.
 
