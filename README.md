@@ -28,19 +28,14 @@ Method: POST
 Payload:
 
 {
-  
-  "image_url": "URL of the image",
-  
+  "image_url": "URL of the image", 
   "prompt": "Text prompt for caption generation"
-
 }
 
 Response:
 
 {
-
   "parsed_answer": "Generated caption"
-
 }
 
 ### Generate Caption from Uploaded File
