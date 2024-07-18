@@ -27,30 +27,23 @@ The application will be available at http://127.0.0.1:5000
 ## API Endpoints
 ### Generate Caption from URL
 Endpoint: /api/generate-caption-url
-
 Method: POST
 
 Payload:
-
 {"image_url": "URL of the image", "prompt": "Text prompt for caption generation"}
 
 Response:
-
 {"parsed_answer": "Generated caption"}
 
 ### Generate Caption from Uploaded File
 Endpoint: /api/generate-caption-file
-
 Method: POST
 
 Payload:
-
 {"image_path": "Path to the image file", "prompt": "Text prompt for caption generation"}
 
 Response:
-
 {"parsed_answer": "Generated caption"}
-
 
 ## Web Interface
 Access the web interface at http://127.0.0.1:5000/.
@@ -69,4 +62,3 @@ Logging is configured to capture detailed information about the application's op
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
-
