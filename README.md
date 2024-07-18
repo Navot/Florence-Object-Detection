@@ -21,14 +21,12 @@ pip install -r requirements.txt
 
 ## Run the Application
 python Florence-2-large-Object-Detection.py
-
 The application will be available at http://127.0.0.1:5000
 
 ## API Endpoints
 ### Generate Caption from URL
 Endpoint: /api/generate-caption-url
 Method: POST
-
 Payload:
 {"image_url": "URL of the image", "prompt": "Text prompt for caption generation"}
 
@@ -38,12 +36,14 @@ Response:
 ### Generate Caption from Uploaded File
 Endpoint: /api/generate-caption-file
 Method: POST
-
 Payload:
 {"image_path": "Path to the image file", "prompt": "Text prompt for caption generation"}
 
 Response:
 {"parsed_answer": "Generated caption"}
+
+## test.py
+You can run the test.py script to test the API.
 
 ## Web Interface
 Access the web interface at http://127.0.0.1:5000/.
