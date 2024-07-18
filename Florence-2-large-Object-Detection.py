@@ -58,6 +58,7 @@ def index():
     if request.method == 'POST':
         image_url = request.form.get('image_url')
         prompt = request.form['prompt']
+        get_box_objects = 'get_box_objects' in request.form
         image = None
         local_image_path = None
         if 'image_file' in request.files and request.files['image_file'].filename != '':
@@ -73,13 +74,15 @@ def index():
         
         if image:
             parsed_answer = run_example(prompt, image)
-            coordinates = run_example("<OD>", image)  # Object detection call
-            logging.info(coordinates)
-            new_image = plot_bbox(image, coordinates.get("<OD>", {}))  # Safely access <OD>
-            local_image_path = os.path.join(app.config['UPLOAD_FOLDER'], 'new_' + (file.filename if local_image_path else os.path.basename(image_url)))
-            logging.info(file.filename if local_image_path else os.path.basename(image_url))
-
-            new_image.save(local_image_path)
+            coordinates = {}
+            if get_box_objects:
+                coordinates = run_example("<OD>", image)  # Object detection call
+                logging.info(f"Coordinates: {coordinates}")
+                new_image = plot_bbox(image, coordinates.get("<OD>", {}))  # Safely access <OD>
+                new_image_path = os.path.join(app.config['UPLOAD_FOLDER'], 'new_' + (os.path.basename(local_image_path)))
+                logging.info(f"Saving new image with bounding boxes to: {new_image_path}")
+                new_image.save(new_image_path)
+                local_image_path = new_image_path  # Update to the new image path
             return render_template_string(html_template, parsed_answer=parsed_answer, coordinates=coordinates, image_url=image_url, local_image_path=local_image_path, prompt=prompt)
     return render_template_string(html_template, parsed_answer=None)
 

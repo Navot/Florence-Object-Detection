@@ -49,6 +49,10 @@
           <label for="prompt" class="form-label">Prompt</label>
           <input type="text" class="form-control" id="prompt" name="prompt" placeholder="Enter your prompt" required>
         </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="get_box_objects" name="get_box_objects">
+            <label class="form-check-label" for="get_box_objects">Get Box Objects</label>
+        </div>
         <button type="submit" class="btn btn-primary w-100">Generate Caption</button>
       </form>
       {% if parsed_answer %}
