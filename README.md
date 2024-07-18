@@ -43,14 +43,15 @@ Response:
 {"parsed_answer": "Generated caption"}
 
 ## test.py
-You can run the test.py script to test the API.
+You can run the test.py script to test the server is working properly.
 
 ## Web Interface
 Access the web interface at http://127.0.0.1:5000/.
-
 Upload an image or provide an image URL.
+Enter a text prompt (supports only the "<MORE_DETAILED_CAPTION>" prompt at the moment) and click "Generate Caption" to get the generated caption and see the image with bounding boxes for detected objects.
 
-Enter a text prompt and click "Generate Caption" to get the generated caption and see the image with bounding boxes for detected objects.
+### index.html
+The index.html contain the UI.
 
 ## Logging
 Logging is configured to capture detailed information about the application's operations. Check the console output for logs.
