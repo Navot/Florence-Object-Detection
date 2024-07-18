@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Image Captioning</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Image Captioning Web App</h1>
+      <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="image_url">Image URL</label>
+          <input type="text" class="form-control" id="image_url" name="image_url">
+        </div>
+        <div class="form-group">
+          <label for="image_file">Upload Image</label>
+          <input type="file" class="form-control" id="image_file" name="image_file">
+        </div>
+        <div class="form-group">
+          <label for="prompt">Prompt</label>
+          <input type="text" class="form-control" id="prompt" name="prompt" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Generate Caption</button>
+      </form>
+      {% if parsed_answer %}
+      <div class="mt-5">
+        <h2>Generated Caption</h2>
+        <p>{{ parsed_answer }}</p>
+        {% if local_image_path %}
+        <img src="{{ url_for('uploaded_file', filename=local_image_path.split('/')[-1]) }}" alt="Image" style="max-width: 100%;">
+        {% elif image_url %}
+        <img src="{{ image_url }}" alt="Image" style="max-width: 100%;">
+        {% endif %}
+        <p><strong>Prompt:</strong> {{ prompt }}</p>
+        <p><strong>Coordinates:</strong> {{ coordinates }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

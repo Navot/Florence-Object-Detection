@@ -40,7 +40,6 @@ if __name__ == "__main__":
     api_url_for_url = "http://127.0.0.1:5000/api/generate-caption-url"
     api_url_for_file = "http://127.0.0.1:5000/api/generate-caption-file"
     image_url = "https://media.licdn.com/dms/image/C4D16AQFP9-46LMUGfg/profile-displaybackgroundimage-shrink_350_1400/0/1642552059040?e=1726704000&v=beta&t=U4VKOyWOXVu0j1eQorzt49KiRiLpJya4mMUkU2eNICE"
-    local_image_path = "/Users/navotdako/Dev/tpg/data/gratisography-holographic-suit-1170x780.jpg"
     prompt = "<MORE_DETAILED_CAPTION>"
     
     caption_from_url = generate_caption_from_url(api_url_for_url, image_url, prompt)

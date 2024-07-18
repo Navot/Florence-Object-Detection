@@ -49,6 +49,9 @@ def run_example(prompt, image):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    template_path = os.path.join(os.path.dirname(__file__), 'index.html')
+    with open(template_path, 'r') as file:
+        html_template = file.read()
     if request.method == 'POST':
         image_url = request.form.get('image_url')
         prompt = request.form['prompt']
@@ -69,8 +72,8 @@ def index():
             new_image = plot_bbox(image, coordinates.get("<OD>", {}))  # Safely access <OD>
             local_image_path = os.path.join(app.config['UPLOAD_FOLDER'], 'new_' + (file.filename if local_image_path else os.path.basename(image_url)))
             new_image.save(local_image_path)
-            return render_template_string(html, parsed_answer=parsed_answer, coordinates=coordinates, image_url=image_url, local_image_path=local_image_path, prompt=prompt)
-    return render_template_string(html, parsed_answer=None)
+            return render_template_string(html_template, parsed_answer=parsed_answer, coordinates=coordinates, image_url=image_url, local_image_path=local_image_path, prompt=prompt)
+    return render_template_string(html_template, parsed_answer=None)
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -108,49 +111,6 @@ def generate_caption_file():
     except Exception as e:
         logging.error(f"Error processing uploaded image: {e}")
         return jsonify({'error': str(e)}), 500
-
-# HTML template for the web interface
-html = '''
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Image Captioning</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="mt-5">Image Captioning</h1>
-      <form method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="image_url">Image URL</label>
-          <input type="text" class="form-control" id="image_url" name="image_url">
-        </div>
-        <div class="form-group">
-          <label for="image_file">Upload Image</label>
-          <input type="file" class="form-control" id="image_file" name="image_file">
-        </div>
-        <div class="form-group">
-          <label for="prompt">Prompt</label>
-          <input type="text" class="form-control" id="prompt" name="prompt" required>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Generate Caption</button>
-      </form>
-      {% if parsed_answer %}
-      <div class="mt-5">
-        <h2>Generated Caption</h2>
-        <p>{{ parsed_answer }}</p>
-        {% if local_image_path %}
-        <img src="{{ url_for('uploaded_file', filename=local_image_path.split('/')[-1]) }}" alt="Image" style="max-width: 100%;">
-        {% elif image_url %}
-        <img src="{{ image_url }}" alt="Image" style="max-width: 100%;">
-        {% endif %}
-        <p><strong>Prompt:</strong> {{ prompt }}</p>
-        <p><strong>Coordinates:</strong> {{ coordinates }}</p>
-      </div>
-      {% endif %}
-    </div>
-  </body>
-</html>
-'''
 
 def plot_bbox(image, data):
     # Debugging: print the structure of data
