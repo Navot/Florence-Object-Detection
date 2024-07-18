@@ -16,7 +16,10 @@ matplotlib.use('Agg')  # Use a non-GUI backend
 app = Flask(__name__)
 
 # Create a directory for temporary images if it doesn't exist
-UPLOAD_FOLDER = 'uploads'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Create a directory for temporary images if it doesn't exist
+UPLOAD_FOLDER = os.path.join(script_dir, 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -49,7 +52,7 @@ def run_example(prompt, image):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    template_path = os.path.join(os.path.dirname(__file__), 'index.html')
+    template_path = os.path.join(script_dir, 'index.html')
     with open(template_path, 'r') as file:
         html_template = file.read()
     if request.method == 'POST':
@@ -58,8 +61,11 @@ def index():
         image = None
         local_image_path = None
         if 'image_file' in request.files and request.files['image_file'].filename != '':
+            logging.info("Image File Route")
             file = request.files['image_file']
+            logging.info(file)
             local_image_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            logging.info("local_image_path: " + local_image_path)
             file.save(local_image_path)
             image = Image.open(local_image_path)
         elif image_url:
@@ -71,6 +77,8 @@ def index():
             logging.info(coordinates)
             new_image = plot_bbox(image, coordinates.get("<OD>", {}))  # Safely access <OD>
             local_image_path = os.path.join(app.config['UPLOAD_FOLDER'], 'new_' + (file.filename if local_image_path else os.path.basename(image_url)))
+            logging.info(file.filename if local_image_path else os.path.basename(image_url))
+
             new_image.save(local_image_path)
             return render_template_string(html_template, parsed_answer=parsed_answer, coordinates=coordinates, image_url=image_url, local_image_path=local_image_path, prompt=prompt)
     return render_template_string(html_template, parsed_answer=None)
